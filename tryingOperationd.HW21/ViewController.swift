@@ -10,6 +10,10 @@ import UIKit
 class ViewController: UIViewController {
 
     
+    let passwordLength = 10
+    
+    
+    
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -18,24 +22,29 @@ class ViewController: UIViewController {
     
     
     @IBAction func generateButtonAction(_ sender: UIButton) {
-        textField.isSecureTextEntry = true
-        changeColorButton.isHidden = false
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
-        label.text = "Идет подбор пароля..."
+        
+        let password = textField.text ?? "Пароль нечитаемый"
+        self.startCracking()
+        
+        let splitPass = password.components(withMaxLength: passwordLength)
+        var bruteForceArray = [BruteForceOperation]()
+        
+        splitPass.forEach { i in
+            bruteForceArray.append(BruteForceOperation(password: i))
+        }
+                
         let queue = OperationQueue()
-        let bruteForceOperation = BruteForceOperation(password: textField.text ?? "Пароль нечитаемый")
+        
         let mainQueue = OperationQueue.main
-        let bruteForceCompletionHandler = BlockOperation {
-            self.activityIndicator.stopAnimating()
-            self.activityIndicator.isHidden = true
-            self.label.text = "Пароль сгенерирован: \(self.textField.text ?? "")"
-            self.textField.isSecureTextEntry = false
+
+        bruteForceArray.forEach { operation in
+            queue.addOperation(operation)
         }
         
-        queue.addOperation(bruteForceOperation)
-        bruteForceOperation.completionBlock = {
-            mainQueue.addOperation(bruteForceCompletionHandler)
+        queue.addBarrierBlock {
+            mainQueue.addOperation {
+                self.stopCracking()
+            }
         }
     }
     
@@ -63,10 +72,35 @@ class ViewController: UIViewController {
     }
 
     func setupView(){
-        
         label.text = "Введите пароль"
         activityIndicator.isHidden = true
         changeColorButton.isHidden = true
+        textField.placeholder = "Пароль"
+        textField.isSecureTextEntry = true
+    }
+    
+    func startCracking() {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        label.text = "Идет подбор пароля..."
+        changeColorButton.isHidden = false
+        generatePassButton.isEnabled = false
+        
+        if textField.text?.isEmpty == true {
+            textField.text = textField.text?.newPassword(of: passwordLength)
+        } else {
+            textField.text = textField.text
+        }
+        
+    }
+    
+    func stopCracking() {
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
+        label.text = "Пароль сгенерирован: \(self.textField.text ?? "")"
+        textField.isSecureTextEntry = false
+        generatePassButton.isEnabled = true
+        changeColorButton.isEnabled = false
     }
 
 }
@@ -94,6 +128,14 @@ extension String {
         }
         
         return password
+    }
+    
+    func components(withMaxLength length: Int) -> [String] {
+        return stride(from: 0, to: self.count, by: length).map {
+            let start = self.index(self.startIndex, offsetBy: $0)
+            let end = self.index(start, offsetBy: length, limitedBy: self.endIndex) ?? self.endIndex
+            return String(self[start..<end])
+        }
     }
 }
 

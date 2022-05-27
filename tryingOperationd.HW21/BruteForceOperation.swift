@@ -18,7 +18,6 @@ class BruteForceOperation: Operation {
         if self.isCancelled {
             return
         }
-        queuePriority = .low
         bruteForce(passwordToUnlock: password)
     }
     
