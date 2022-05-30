@@ -16,6 +16,7 @@
 		973747A028314EC5000825F5 /* tryingOperationd_HW21Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9737479F28314EC5000825F5 /* tryingOperationd_HW21Tests.swift */; };
 		973747AA28314EC5000825F5 /* tryingOperationd_HW21UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973747A928314EC5000825F5 /* tryingOperationd_HW21UITests.swift */; };
 		973747AC28314EC5000825F5 /* tryingOperationd_HW21UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973747AB28314EC5000825F5 /* tryingOperationd_HW21UITestsLaunchTests.swift */; };
+		973747B92831500B000825F5 /* BruteForceOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973747B82831500B000825F5 /* BruteForceOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		973747A528314EC5000825F5 /* tryingOperationd.HW21UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tryingOperationd.HW21UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		973747A928314EC5000825F5 /* tryingOperationd_HW21UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tryingOperationd_HW21UITests.swift; sourceTree = "<group>"; };
 		973747AB28314EC5000825F5 /* tryingOperationd_HW21UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tryingOperationd_HW21UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		973747B82831500B000825F5 /* BruteForceOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForceOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				9737478828314EC3000825F5 /* AppDelegate.swift */,
 				9737478A28314EC3000825F5 /* SceneDelegate.swift */,
 				9737478C28314EC3000825F5 /* ViewController.swift */,
+				973747B82831500B000825F5 /* BruteForceOperation.swift */,
 				9737478E28314EC3000825F5 /* Main.storyboard */,
 				9737479128314EC5000825F5 /* Assets.xcassets */,
 				9737479328314EC5000825F5 /* LaunchScreen.storyboard */,
@@ -260,6 +263,7 @@
 			files = (
 				9737478D28314EC3000825F5 /* ViewController.swift in Sources */,
 				9737478928314EC3000825F5 /* AppDelegate.swift in Sources */,
+				973747B92831500B000825F5 /* BruteForceOperation.swift in Sources */,
 				9737478B28314EC3000825F5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
