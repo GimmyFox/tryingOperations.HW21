@@ -8,17 +8,17 @@
 import Foundation
 
 class BruteForceOperation: Operation {
-    var password: String
-    
+    var password = ""
+    var passwordToPass: String
     init(password: String) {
-        self.password = password
+        self.passwordToPass = password
     }
     
     override func main() {
         if self.isCancelled {
             return
         }
-        bruteForce(passwordToUnlock: password)
+        bruteForce(passwordToUnlock: passwordToPass)
     }
     
     
